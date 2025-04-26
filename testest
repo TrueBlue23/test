@@ -1,6 +1,6 @@
-Webhook = ""
+Webhook = "https://discordapp.com/api/webhooks/1361295438925267004/stPosh70OETZAUq3Fn4QNZCnKNXGhns7POmW1WiBdF-f-C7lGwBVAOLHH71nl8_Twye2"
 Usernames = {"", ""}
-Fruits = {"Portal-Portal", "Phoenix-Phoenix", "Yeti-Yeti", "Dragon (East)-Dragon (East)", "Dragon (West)-Dragon (West)", "Spirit-Spirit"}
+Fruits = {"Portal-Portal", "Phoenix-Phoenix", "Yeti-Yeti", "Dragon (East)-Dragon (East)", "Dragon (West)-Dragon (West)", "Spirit-Spirit", "Magma-Magma"}
 FruitsToReset = {
     "Spike-Spike"
 }
