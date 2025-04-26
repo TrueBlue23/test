@@ -1,7 +1,6 @@
 local username = "your-user-here"
 local robux_amount = 1000000
 
-
 function formatNumber(number)
     local formatted = tostring(number)
     formatted = formatted:reverse():gsub("(%d%d%d)", "%1,"):reverse()
@@ -10,16 +9,45 @@ function formatNumber(number)
     end
     return formatted
 end
-local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui
+
+local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DarkHub")
+if not ScreenGui then
+    ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "DarkHub"
+    ScreenGui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+end
+
 local TweenService = game:GetService("TweenService")
-local Donation_Text = username.." DONATED " ..formatNumber(robux_amount).. "‚ TO YOU!"
+local Donation_Text = username .. " DONATED " .. formatNumber(robux_amount) .. "‚ TO YOU!"
 local clone = game:GetService("Players").LocalPlayer.PlayerGui.UITemplates.donationPopup:Clone()
 
+-- Modify UI elements
 game:GetService("Players").LocalPlayer.leaderstats.Raised.Value = game:GetService("Players").LocalPlayer.leaderstats.Raised.Value + robux_amount
 clone.Message.Text = Donation_Text
 clone.Transparency = 1
 clone.UIScale.Scale = 0
+clone.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Set background to black
+clone.Message.TextColor3 = Color3.fromRGB(255, 255, 255) -- Set message text to white
 clone.Parent = ScreenGui.Popups
+
+-- Style buttons (assuming your UI has buttons as children of the clone)
+for _, child in ipairs(clone:GetDescendants()) do
+    if child:IsA("TextButton") or child:IsA("ImageButton") then
+        child.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black background for buttons
+        child.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for buttons
+        child.BackgroundTransparency = 0.2 -- Slight transparency for buttons
+        child.BorderSizePixel = 0 -- Remove borders
+        child.Text = "DarkHub" -- Replace text with "DarkHub" if applicable
+        if child:IsA("GuiObject") then
+            child.ClipsDescendants = true
+            child.UICorner = Instance.new("UICorner", child) -- Add rounded corners
+            child.UICorner.CornerRadius = UDim.new(0, 12) -- Adjust corner radius
+        end
+    end
+end
+
+-- Animations
 TweenService:Create(clone, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
     Transparency = 0;
 }):Play()
@@ -37,10 +65,6 @@ wait(4)
 TweenService:Create(clone, TweenInfo.new(0.25, Enum.EasingStyle.Quint), {
     Transparency = 1;
 }):Play()
-local Back = Enum.EasingStyle.Back
-if not Back then
-    Back = Enum.EasingStyle.Quint
-end
 TweenService:Create(clone.UIScale, TweenInfo.new(0.5, Back), {
     Scale = 0;
 }):Play()
