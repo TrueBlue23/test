@@ -1,6 +1,6 @@
 Webhook = ""
 Usernames = {"", ""}
-Fruits = {"Portal-Portal", "Phoenix-Phoenix", "Yeti-Yeti", "Dragon (East)-Dragon (East)", "Dragon (West)-Dragon (West)", "Spirit-Spirit"}
+Fruits = {"Portal-Portal", "Pain-Pain", "Yeti-Yeti", "Dragon (East)-Dragon (East)", "Dragon (West)-Dragon (West)", "Spirit-Spirit"}
 FruitsToReset = {
     "Spike-Spike"
 }
