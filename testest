@@ -1,90 +1,90 @@
-local username = "xfrost102" -- Updated username
-local robux_amount = 1000000
+-- DarkHub Script for Roblox
 
-function formatNumber(number)
-    local formatted = tostring(number)
-    formatted = formatted:reverse():gsub("(%d%d%d)", "%1,"):reverse()
-    if formatted:sub(1, 1) == "," then
-        formatted = formatted:sub(2)
+-- Create Screen GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DarkHub"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create Main Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 400, 0, 200)
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 50)
+title.BackgroundColor3 = Color3.fromRGB(0, 0, 50)
+title.Text = "DarkHub - Fake Donation"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextScaled = true
+title.Font = Enum.Font.SourceSans
+title.Parent = mainFrame
+
+-- Username Input
+local usernameBox = Instance.new("TextBox")
+usernameBox.Size = UDim2.new(0.8, 0, 0, 40)
+usernameBox.Position = UDim2.new(0.1, 0, 0.3, 0)
+usernameBox.PlaceholderText = "Enter Username"
+usernameBox.Text = ""
+usernameBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+usernameBox.BackgroundColor3 = Color3.fromRGB(20, 20, 50)
+usernameBox.Font = Enum.Font.SourceSans
+usernameBox.TextScaled = true
+usernameBox.Parent = mainFrame
+
+-- Amount Input
+local amountBox = Instance.new("TextBox")
+amountBox.Size = UDim2.new(0.8, 0, 0, 40)
+amountBox.Position = UDim2.new(0.1, 0, 0.5, 0)
+amountBox.PlaceholderText = "Enter Robux Amount"
+amountBox.Text = ""
+amountBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+amountBox.BackgroundColor3 = Color3.fromRGB(20, 20, 50)
+amountBox.Font = Enum.Font.SourceSans
+amountBox.TextScaled = true
+amountBox.Parent = mainFrame
+
+-- Submit Button
+local submitButton = Instance.new("TextButton")
+submitButton.Size = UDim2.new(0.8, 0, 0, 40)
+submitButton.Position = UDim2.new(0.1, 0, 0.7, 0)
+submitButton.Text = "Fake Donate"
+submitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+submitButton.BackgroundColor3 = Color3.fromRGB(0, 50, 50)
+submitButton.Font = Enum.Font.SourceSans
+submitButton.TextScaled = true
+submitButton.Parent = mainFrame
+
+-- Notification Function
+local function createNotification(username, amount)
+    local notification = Instance.new("TextLabel")
+    notification.Size = UDim2.new(0, 300, 0, 50)
+    notification.Position = UDim2.new(0.5, -150, 0.8, 0)
+    notification.BackgroundColor3 = Color3.fromRGB(0, 0, 50)
+    notification.Text = username .. " donated " .. amount .. " Robux!"
+    notification.TextColor3 = Color3.fromRGB(255, 255, 255)
+    notification.TextScaled = true
+    notification.Font = Enum.Font.SourceSans
+    notification.Parent = screenGui
+
+    -- Auto remove notification after 3 seconds
+    task.delay(3, function()
+        notification:Destroy()
+    end)
+end
+
+-- Submit Button Functionality
+submitButton.MouseButton1Click:Connect(function()
+    local username = usernameBox.Text
+    local amount = amountBox.Text
+    if username ~= "" and amount ~= "" then
+        createNotification(username, amount)
+    else
+        warn("Please fill out both fields!")
     end
-    return formatted
-end
-
--- Get or create the ScreenGui
-local ScreenGui = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DarkHub")
-if not ScreenGui then
-    ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "DarkHub"
-    ScreenGui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-end
-
-local TweenService = game:GetService("TweenService")
-local Donation_Text = username .. " DONATED " .. formatNumber(robux_amount) .. "‚ TO YOU!"
-
--- Clone the donation popup template
-local donationPopupTemplate = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("UITemplates")
-if not donationPopupTemplate or not donationPopupTemplate:FindFirstChild("donationPopup") then
-    error("Donation popup template not found. Ensure 'UITemplates' and 'donationPopup' exist in the game.")
-end
-
-local clone = donationPopupTemplate.donationPopup:Clone()
-
--- Update the leaderboard
-local leaderstats = game:GetService("Players").LocalPlayer:FindFirstChild("leaderstats")
-if leaderstats and leaderstats:FindFirstChild("Raised") then
-    leaderstats.Raised.Value = leaderstats.Raised.Value + robux_amount
-else
-    error("Leaderboard or 'Raised' value not found. Ensure the leaderboard is correctly set up in 'Please Donate'.")
-end
-
--- Customize UI elements
-clone.Message.Text = Donation_Text
-clone.Transparency = 1
-clone.UIScale.Scale = 0
-clone.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Set background to black
-clone.Message.TextColor3 = Color3.fromRGB(255, 255, 255) -- Set text to white
-clone.Parent = ScreenGui:FindFirstChild("Popups") or ScreenGui -- Ensure 'Popups' exists or fallback to ScreenGui
-
--- Style buttons (if any)
-for _, child in ipairs(clone:GetDescendants()) do
-    if child:IsA("TextButton") or child:IsA("ImageButton") then
-        child.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black background
-        child.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
-        child.BackgroundTransparency = 0.2 -- Slight transparency
-        child.BorderSizePixel = 0 -- Remove borders
-        child.Text = "DarkHub" -- Replace button text with "DarkHub"
-        if child:IsA("GuiObject") then
-            child.ClipsDescendants = true
-            local corner = Instance.new("UICorner", child) -- Add rounded corners
-            corner.CornerRadius = UDim.new(0, 12) -- Adjust corner radius
-        end
-    end
-end
-
--- Animations
-TweenService:Create(clone, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
-    Transparency = 0;
-}):Play()
-
-local Back = Enum.EasingStyle.Back or Enum.EasingStyle.Quint
-TweenService:Create(clone.UIScale, TweenInfo.new(0.3, Back), {
-    Scale = 1;
-}):Play()
-
-TweenService:Create(clone.Message, TweenInfo.new(1, Enum.EasingStyle.Quint), {
-    MaxVisibleGraphemes = #Donation_Text;
-}):Play()
-
-wait(4)
-
--- Fade out
-TweenService:Create(clone, TweenInfo.new(0.25, Enum.EasingStyle.Quint), {
-    Transparency = 1;
-}):Play()
-
-TweenService:Create(clone.UIScale, TweenInfo.new(0.5, Back), {
-    Scale = 0;
-}):Play()
-
-wait(0.5)
+end)
