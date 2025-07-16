@@ -1,574 +1,150 @@
---[[
-    All-In-One Auto Farm Script for Grow a Garden
-    Contains all scripts in one file with menu system
-]]
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = Players.LocalPlayer
 
--- Configuration
-getgenv().AutoFarm = false
-getgenv().CurrentScript = "ultra"
-
--- Script Selection Menu
-local function showMenu()
-    print("=== Auto Farm Script Menu ===")
-    print("1. Ultra Simple (Delta Compatible)")
-    print("2. Delta Compatible (with GUI)")
-    print("3. Complete (Full Features)")
-    print("4. Debug Monitor")
-    print("5. Configuration")
-    print("6. Exit")
-    print("=============================")
+local function makeRemoteEvent(name)
+	local existing = ReplicatedStorage:FindFirstChild(name)
+	if existing then return existing end
+	local re = Instance.new("RemoteEvent")
+	re.Name = name
+	re.Parent = ReplicatedStorage
+	return re
 end
 
--- Ultra Simple Script
-local function loadUltraScript()
-    print("Loading Ultra Simple Script...")
-    
-    getgenv().AutoFarm = false
-    
-    local Players = game:GetService("Players")
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    local humanoid = character:WaitForChild("Humanoid")
-    
-    local waterRemote = ReplicatedStorage:FindFirstChild("WaterPlant") or ReplicatedStorage:FindFirstChild("Water")
-    local harvestRemote = ReplicatedStorage:FindFirstChild("HarvestPlant") or ReplicatedStorage:FindFirstChild("Harvest")
-    local sellRemote = ReplicatedStorage:FindFirstChild("SellCrops") or ReplicatedStorage:FindFirstChild("Sell")
-    local plantRemote = ReplicatedStorage:FindFirstChild("PlantSeed") or ReplicatedStorage:FindFirstChild("Plant")
-    
-    local function findPlant()
-        for _, obj in pairs(workspace:GetChildren()) do
-            if obj.Name:find("Plant") or obj.Name:find("Crop") then
-                local distance = (obj.PrimaryPart or obj:FindFirstChild("Base") or obj).Position - humanoidRootPart.Position
-                if distance.Magnitude < 50 then
-                    return obj
-                end
-            end
-        end
-        return nil
-    end
-    
-    local function findNPC()
-        for _, obj in pairs(workspace:GetChildren()) do
-            if obj.Name:find("NPC") or obj.Name:find("Shop") then
-                local distance = (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChild("Base")).Position - humanoidRootPart.Position
-                if distance.Magnitude < 20 then
-                    return obj
-                end
-            end
-        end
-        return nil
-    end
-    
-    local function findPlot()
-        for _, obj in pairs(workspace:GetChildren()) do
-            if obj.Name:find("Plot") or obj.Name:find("Garden") then
-                local hasPlant = false
-                for _, child in pairs(obj:GetChildren()) do
-                    if child.Name:find("Plant") or child.Name:find("Crop") then
-                        hasPlant = true
-                        break
-                    end
-                end
-                if not hasPlant then
-                    return obj
-                end
-            end
-        end
-        return nil
-    end
-    
-    local function autoWater()
-        if not waterRemote then
-            print("Water remote not found")
-            return
-        end
-        
-        local plant = findPlant()
-        if not plant then
-            print("No plants found")
-            return
-        end
-        
-        local pos = (plant.PrimaryPart or plant:FindFirstChild("Base") or plant).Position
-        humanoid:MoveTo(pos)
-        wait(2)
-        waterRemote:FireServer(plant)
-        print("Watered plant")
-        wait(1)
-    end
-    
-    local function autoHarvest()
-        if not harvestRemote then
-            print("Harvest remote not found")
-            return
-        end
-        
-        local plant = findPlant()
-        if not plant then
-            print("No plants found")
-            return
-        end
-        
-        local pos = (plant.PrimaryPart or plant:FindFirstChild("Base") or plant).Position
-        humanoid:MoveTo(pos)
-        wait(2)
-        harvestRemote:FireServer(plant)
-        print("Harvested plant")
-        wait(1)
-    end
-    
-    local function autoSell()
-        if not sellRemote then
-            print("Sell remote not found")
-            return
-        end
-        
-        local npc = findNPC()
-        if not npc then
-            print("No NPC found")
-            return
-        end
-        
-        local pos = (npc.PrimaryPart or npc:FindFirstChild("HumanoidRootPart") or npc:FindFirstChild("Base")).Position
-        humanoid:MoveTo(pos)
-        wait(2)
-        sellRemote:FireServer(npc)
-        print("Sold crops")
-        wait(2)
-    end
-    
-    local function autoPlant()
-        if not plantRemote then
-            print("Plant remote not found")
-            return
-        end
-        
-        local plot = findPlot()
-        if not plot then
-            print("No empty plots found")
-            return
-        end
-        
-        local pos = (plot.PrimaryPart or plot:FindFirstChild("Base") or plot).Position
-        humanoid:MoveTo(pos)
-        wait(2)
-        plantRemote:FireServer(plot, "BasicSeed")
-        print("Planted seed")
-        wait(1)
-    end
-    
-    local function mainLoop()
-        print("Auto Farm started!")
-        
-        while getgenv().AutoFarm do
-            if not character or not character.Parent then
-                character = player.Character or player.CharacterAdded:Wait()
-                humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-                humanoid = character:WaitForChild("Humanoid")
-            end
-            
-            autoWater()
-            if not getgenv().AutoFarm then break end
-            wait(2)
-            
-            autoHarvest()
-            if not getgenv().AutoFarm then break end
-            wait(2)
-            
-            autoPlant()
-            if not getgenv().AutoFarm then break end
-            wait(2)
-            
-            autoSell()
-            if not getgenv().AutoFarm then break end
-            wait(5)
-        end
-        
-        print("Auto Farm stopped!")
-    end
-    
-    player.CharacterAdded:Connect(function(newCharacter)
-        character = newCharacter
-        humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-        humanoid = character:WaitForChild("Humanoid")
-    end)
-    
-    local function setupCommands()
-        local function onChatted(message)
-            if message:sub(1, 1) == "/" then
-                local command = message:sub(2):lower()
-                
-                if command == "start" then
-                    getgenv().AutoFarm = true
-                    print("Auto Farm started!")
-                elseif command == "stop" then
-                    getgenv().AutoFarm = false
-                    print("Auto Farm stopped!")
-                elseif command == "water" then
-                    autoWater()
-                elseif command == "harvest" then
-                    autoHarvest()
-                elseif command == "sell" then
-                    autoSell()
-                elseif command == "plant" then
-                    autoPlant()
-                else
-                    print("Commands: /start, /stop, /water, /harvest, /sell, /plant")
-                end
-            end
-        end
-        
-        player.Chatted:Connect(onChatted)
-    end
-    
-    setupCommands()
-    spawn(mainLoop)
-    
-    print("=== Ultra Simple Script Loaded ===")
-    print("Commands: /start, /stop, /water, /harvest, /sell, /plant")
+local PlantEvent = makeRemoteEvent("PlantSeed")
+local WaterEvent = makeRemoteEvent("WaterPlant")
+local HarvestEvent = makeRemoteEvent("HarvestPlant")
+
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "GardenUI"
+gui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 260, 0, 90)
+frame.Position = UDim2.new(1, -280, 0, 30)
+frame.BackgroundColor3 = Color3.fromRGB(0, 122, 255)
+frame.BackgroundTransparency = 0.1
+frame.BorderSizePixel = 0
+frame.AnchorPoint = Vector2.new(0, 0)
+
+local label = Instance.new("TextLabel", frame)
+label.Size = UDim2.new(1, 0, 1, 0)
+label.BackgroundTransparency = 1
+label.Text = "🌱 Welcome to Blue Garden!"
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.Font = Enum.Font.Gotham
+label.TextSize = 20
+
+local activePlots = {}
+
+local function createPlot(pos)
+	local plot = Instance.new("Part", workspace)
+	plot.Size = Vector3.new(6, 1, 6)
+	plot.Position = pos
+	plot.Anchored = true
+	plot.BrickColor = BrickColor.new("Earth green")
+	plot.Name = "GardenPlot"
+
+	local click = Instance.new("ClickDetector", plot)
+
+	local state = {
+		Stage = 0,
+		Owner = nil,
+		PlantModel = nil,
+		PlotPart = plot
+	}
+
+	table.insert(activePlots, state)
+
+	click.MouseClick:Connect(function(p)
+		if state.Stage == 0 then
+			PlantEvent:FireServer(plot)
+		elseif state.Stage == 3 then
+			HarvestEvent:FireServer(plot)
+		else
+			WaterEvent:FireServer(plot)
+		end
+	end)
+
+	return state
 end
 
--- Delta Compatible Script (with GUI)
-local function loadDeltaScript()
-    print("Loading Delta Compatible Script...")
-    
-    getgenv().AutoFarm = false
-    
-    local Players = game:GetService("Players")
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    local humanoid = character:WaitForChild("Humanoid")
-    
-    local remotes = {
-        water = ReplicatedStorage:FindFirstChild("WaterPlant") or ReplicatedStorage:FindFirstChild("Water"),
-        harvest = ReplicatedStorage:FindFirstChild("HarvestPlant") or ReplicatedStorage:FindFirstChild("Harvest"),
-        sell = ReplicatedStorage:FindFirstChild("SellCrops") or ReplicatedStorage:FindFirstChild("Sell"),
-        plant = ReplicatedStorage:FindFirstChild("PlantSeed") or ReplicatedStorage:FindFirstChild("Plant")
-    }
-    
-    local function simpleWait(seconds)
-        local start = tick()
-        while tick() - start < seconds do
-            if not getgenv().AutoFarm then
-                return false
-            end
-            wait(0.1)
-        end
-        return true
-    end
-    
-    local function findNearestPlant()
-        for _, obj in pairs(workspace:GetChildren()) do
-            if obj.Name:find("Plant") or obj.Name:find("Crop") or obj.Name:find("Seed") then
-                local distance = (obj.PrimaryPart or obj:FindFirstChild("Base") or obj).Position - humanoidRootPart.Position
-                if distance.Magnitude < 50 then
-                    return obj
-                end
-            end
-        end
-        return nil
-    end
-    
-    local function findSellNPC()
-        for _, obj in pairs(workspace:GetChildren()) do
-            if obj.Name:find("NPC") or obj.Name:find("Merchant") or obj.Name:find("Shop") or obj.Name:find("Sell") then
-                local distance = (obj.PrimaryPart or obj:FindFirstChild("HumanoidRootPart") or obj:FindFirstChild("Base")).Position - humanoidRootPart.Position
-                if distance.Magnitude < 20 then
-                    return obj
-                end
-            end
-        end
-        return nil
-    end
-    
-    local function autoWater()
-        if not remotes.water then
-            print("Water remote not found")
-            return
-        end
-        
-        local plant = findNearestPlant()
-        if not plant then
-            print("No plants found to water")
-            return
-        end
-        
-        local plantPosition = (plant.PrimaryPart or plant:FindFirstChild("Base") or plant).Position
-        humanoid:MoveTo(plantPosition)
-        
-        while (plantPosition - humanoidRootPart.Position).Magnitude > 5 do
-            if not getgenv().AutoFarm then return end
-            wait(0.1)
-        end
-        
-        remotes.water:FireServer(plant)
-        print("Watered plant:", plant.Name)
-        
-        simpleWait(1)
-    end
-    
-    local function autoHarvest()
-        if not remotes.harvest then
-            print("Harvest remote not found")
-            return
-        end
-        
-        local plant = findNearestPlant()
-        if not plant then
-            print("No plants found to harvest")
-            return
-        end
-        
-        local plantPosition = (plant.PrimaryPart or plant:FindFirstChild("Base") or plant).Position
-        humanoid:MoveTo(plantPosition)
-        
-        while (plantPosition - humanoidRootPart.Position).Magnitude > 5 do
-            if not getgenv().AutoFarm then return end
-            wait(0.1)
-        end
-        
-        remotes.harvest:FireServer(plant)
-        print("Harvested plant:", plant.Name)
-        
-        simpleWait(1)
-    end
-    
-    local function autoSell()
-        if not remotes.sell then
-            print("Sell remote not found")
-            return
-        end
-        
-        local sellNPC = findSellNPC()
-        if not sellNPC then
-            print("No sell NPC found")
-            return
-        end
-        
-        local npcPosition = (sellNPC.PrimaryPart or sellNPC:FindFirstChild("HumanoidRootPart") or sellNPC:FindFirstChild("Base")).Position
-        humanoid:MoveTo(npcPosition)
-        
-        while (npcPosition - humanoidRootPart.Position).Magnitude > 8 do
-            if not getgenv().AutoFarm then return end
-            wait(0.1)
-        end
-        
-        remotes.sell:FireServer(sellNPC)
-        print("Sold crops to:", sellNPC.Name)
-        
-        simpleWait(2)
-    end
-    
-    local function autoPlant()
-        if not remotes.plant then
-            print("Plant remote not found")
-            return
-        end
-        
-        local emptyPlot = nil
-        
-        for _, plot in pairs(workspace:GetChildren()) do
-            if plot.Name:find("Plot") or plot.Name:find("Garden") or plot.Name:find("Farm") then
-                local hasPlant = false
-                for _, child in pairs(plot:GetChildren()) do
-                    if child.Name:find("Plant") or child.Name:find("Crop") or child.Name:find("Seed") then
-                        hasPlant = true
-                        break
-                    end
-                end
-                
-                if not hasPlant then
-                    emptyPlot = plot
-                    break
-                end
-            end
-        end
-        
-        if not emptyPlot then
-            print("No empty plots found")
-            return
-        end
-        
-        local plotPosition = (emptyPlot.PrimaryPart or emptyPlot:FindFirstChild("Base") or emptyPlot).Position
-        humanoid:MoveTo(plotPosition)
-        
-        while (plotPosition - humanoidRootPart.Position).Magnitude > 5 do
-            if not getgenv().AutoFarm then return end
-            wait(0.1)
-        end
-        
-        remotes.plant:FireServer(emptyPlot, "BasicSeed")
-        print("Planted seed in:", emptyPlot.Name)
-        
-        simpleWait(1)
-    end
-    
-    local function autoFarmLoop()
-        print("Auto Farm started!")
-        
-        while getgenv().AutoFarm do
-            if not character or not character.Parent then
-                character = player.Character or player.CharacterAdded:Wait()
-                humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-                humanoid = character:WaitForChild("Humanoid")
-            end
-            
-            autoWater()
-            if not getgenv().AutoFarm then break end
-            
-            simpleWait(2)
-            
-            autoHarvest()
-            if not getgenv().AutoFarm then break end
-            
-            simpleWait(2)
-            
-            autoPlant()
-            if not getgenv().AutoFarm then break end
-            
-            simpleWait(2)
-            
-            autoSell()
-            if not getgenv().AutoFarm then break end
-            
-            simpleWait(5)
-        end
-        
-        print("Auto Farm stopped!")
-    end
-    
-    player.CharacterAdded:Connect(function(newCharacter)
-        character = newCharacter
-        humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-        humanoid = character:WaitForChild("Humanoid")
-    end)
-    
-    -- Simple GUI
-    local function createSimpleGUI()
-        local playerGui = player:WaitForChild("PlayerGui")
-        
-        local screenGui = Instance.new("ScreenGui")
-        screenGui.Name = "DeltaAutoFarmGUI"
-        screenGui.Parent = playerGui
-        
-        local mainFrame = Instance.new("Frame")
-        mainFrame.Size = UDim2.new(0, 250, 0, 200)
-        mainFrame.Position = UDim2.new(0, 10, 0.5, -100)
-        mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-        mainFrame.BorderSizePixel = 0
-        mainFrame.Parent = screenGui
-        
-        local title = Instance.new("TextLabel")
-        title.Size = UDim2.new(1, 0, 0, 30)
-        title.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        title.BorderSizePixel = 0
-        title.Text = "Delta Auto Farm"
-        title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        title.Font = Enum.Font.GothamBold
-        title.TextSize = 16
-        title.Parent = mainFrame
-        
-        local closeButton = Instance.new("TextButton")
-        closeButton.Size = UDim2.new(0, 25, 0, 25)
-        closeButton.Position = UDim2.new(1, -30, 0, 2)
-        closeButton.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
-        closeButton.BorderSizePixel = 0
-        closeButton.Text = "X"
-        closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        closeButton.Font = Enum.Font.GothamBold
-        closeButton.TextSize = 14
-        closeButton.Parent = mainFrame
-        
-        closeButton.MouseButton1Click:Connect(function()
-            screenGui:Destroy()
-        end)
-        
-        local statusLabel = Instance.new("TextLabel")
-        statusLabel.Size = UDim2.new(1, -20, 0, 25)
-        statusLabel.Position = UDim2.new(0, 10, 0, 40)
-        statusLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-        statusLabel.BorderSizePixel = 0
-        statusLabel.Text = "Status: Stopped"
-        statusLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
-        statusLabel.Font = Enum.Font.Gotham
-        statusLabel.TextSize = 14
-        statusLabel.Parent = mainFrame
-        
-        local toggleButton = Instance.new("TextButton")
-        toggleButton.Size = UDim2.new(1, -20, 0, 35)
-        toggleButton.Position = UDim2.new(0, 10, 0, 75)
-        toggleButton.BackgroundColor3 = Color3.fromRGB(80, 255, 80)
-        toggleButton.BorderSizePixel = 0
-        toggleButton.Text = "START AUTO FARM"
-        toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        toggleButton.Font = Enum.Font.GothamBold
-        toggleButton.TextSize = 14
-        toggleButton.Parent = mainFrame
-        
-        local waterButton = Instance.new("TextButton")
-        waterButton.Size = UDim2.new(0.45, -5, 0, 30)
-        waterButton.Position = UDim2.new(0, 10, 0, 120)
-        waterButton.BackgroundColor3 = Color3.fromRGB(80, 150, 255)
-        waterButton.BorderSizePixel = 0
-        waterButton.Text = "Water"
-        waterButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        waterButton.Font = Enum.Font.Gotham
-        waterButton.TextSize = 12
-        waterButton.Parent = mainFrame
-        
-        local harvestButton = Instance.new("TextButton")
-        harvestButton.Size = UDim2.new(0.45, -5, 0, 30)
-        harvestButton.Position = UDim2.new(0.55, 0, 0, 120)
-        harvestButton.BackgroundColor3 = Color3.fromRGB(255, 200, 80)
-        harvestButton.BorderSizePixel = 0
-        harvestButton.Text = "Harvest"
-        harvestButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        harvestButton.Font = Enum.Font.Gotham
-        harvestButton.TextSize = 12
-        harvestButton.Parent = mainFrame
-        
-        local sellButton = Instance.new("TextButton")
-        sellButton.Size = UDim2.new(0.45, -5, 0, 30)
-        sellButton.Position = UDim2.new(0, 10, 0, 160)
-        sellButton.BackgroundColor3 = Color3.fromRGB(255, 150, 80)
-        sellButton.BorderSizePixel = 0
-        sellButton.Text = "Sell"
-        sellButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        sellButton.Font = Enum.Font.Gotham
-        sellButton.TextSize = 12
-        sellButton.Parent = mainFrame
-        
-        local plantButton = Instance.new("TextButton")
-        plantButton.Size = UDim2.new(0.45, -5, 0, 30)
-        plantButton.Position = UDim2.new(0.55, 0, 0, 160)
-        plantButton.BackgroundColor3 = Color3.fromRGB(80, 255, 150)
-        plantButton.BorderSizePixel = 0
-        plantButton.Text = "Plant"
-        plantButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        plantButton.Font = Enum.Font.Gotham
-        plantButton.TextSize = 12
-        plantButton.Parent = mainFrame
-        
-        local function updateStatus()
-            if getgenv().AutoFarm then
-                statusLabel.Text = "Status: Running"
-                statusLabel.TextColor3 = Color3.fromRGB(100, 255, 100)
-                toggleButton.Text = "STOP AUTO FARM"
-                toggleButton.BackgroundColor3 = Color3.fromRGB(255, 100, 100)
-            else
-                statusLabel.Text = "Status: Stopped"
-                statusLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
-                toggleButton.Text = "START AUTO FARM"
-                toggleButton.BackgroundColor3 = Color3.fromRGB(80, 255, 80)
-            end
-        end
-        
-        toggleButton.MouseButton1Click:Connect(function()
-            getgenv().AutoFarm = not getgenv().AutoFarm
-            updateSt
+local plot1 = createPlot(Vector3.new(0, 3, 0))
+local plot2 = createPlot(Vector3.new(8, 3, 0))
+local plot3 = createPlot(Vector3.new(-8, 3, 0))
+
+local function makeTool()
+	local tool = Instance.new("Tool")
+	tool.Name = "WateringCan"
+	tool.RequiresHandle = false
+	tool.CanBeDropped = false
+	tool.Parent = player:WaitForChild("Backpack")
+
+	tool.Activated:Connect(function()
+		local mouse = player:GetMouse()
+		for _, data in ipairs(activePlots) do
+			if data.PlotPart == mouse.Target then
+				if data.Stage > 0 and data.Stage < 3 then
+					WaterEvent:FireServer(data.PlotPart)
+				end
+			end
+		end
+	end)
+end
+
+makeTool()
+
+local function spawnPlantModel(stage, plotPart)
+	local modelName = "PlantStage" .. tostring(stage)
+	local modelTemplate = ReplicatedStorage:FindFirstChild(modelName)
+
+	if modelTemplate then
+		local clone = modelTemplate:Clone()
+		clone:SetPrimaryPartCFrame(CFrame.new(plotPart.Position + Vector3.new(0, 2, 0)))
+		clone.Parent = workspace
+		return clone
+	end
+	return nil
+end
+
+local function updatePlot(plotPart, stage, owner)
+	for _, data in ipairs(activePlots) do
+		if data.PlotPart == plotPart then
+			if data.PlantModel then
+				data.PlantModel:Destroy()
+			end
+			data.Stage = stage
+			data.Owner = owner
+			if stage > 0 then
+				data.PlantModel = spawnPlantModel(stage, plotPart)
+			end
+			break
+		end
+	end
+end
+
+PlantEvent.OnServerEvent:Connect(function(p, plot)
+	updatePlot(plot, 1, p)
+	label.Text = "🌱 " .. p.Name .. " planted a seed!"
+end)
+
+WaterEvent.OnServerEvent:Connect(function(p, plot)
+	for _, data in ipairs(activePlots) do
+		if data.PlotPart == plot and data.Owner == p and data.Stage < 3 then
+			updatePlot(plot, data.Stage + 1, p)
+			label.Text = "💧 Plant watered! Stage: " .. tostring(data.Stage + 1)
+			break
+		end
+	end
+end)
+
+HarvestEvent.OnServerEvent:Connect(function(p, plot)
+	for _, data in ipairs(activePlots) do
+		if data.PlotPart == plot and data.Owner == p and data.Stage == 3 then
+			if data.PlantModel then data.PlantModel:Destroy() end
+			updatePlot(plot, 0, nil)
+			label.Text = "✂️ " .. p.Name .. " harvested the plant!"
+			break
+		end
+	end
+end)
