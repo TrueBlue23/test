@@ -1,37 +1,548 @@
-<html lang="en" class="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>@layer components { :where(.i-lucide\:log-out){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5l-5-5m5 5H9'/%3E%3C/svg%3E")} }</style><style>@layer components { :where(.i-lucide\:star){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z'/%3E%3C/svg%3E")} }</style><style>@layer components { :where(.i-lucide\:file-code-2){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4M5 12l-3 3l3 3m4 0l3-3l-3-3'/%3E%3C/g%3E%3C/svg%3E")} }</style><style>@layer components { :where(.i-lucide\:palette){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M12 22a1 1 0 0 1 0-20a10 9 0 0 1 10 9a5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z'/%3E%3Ccircle cx='13.5' cy='6.5' r='.5' fill='black'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5' fill='black'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5' fill='black'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5' fill='black'/%3E%3C/g%3E%3C/svg%3E")} }</style><style>@layer components { :where(.i-lucide\:user-round){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='12' cy='8' r='5'/%3E%3Cpath d='M20 21a8 8 0 0 0-16 0'/%3E%3C/g%3E%3C/svg%3E")} }</style><style>@layer components { :where(.i-lucide\:moon){display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask-image:var(--svg);mask-image:var(--svg);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;--svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 3a6 6 0 0 0 9 9a9 9 0 1 1-9-9'/%3E%3C/svg%3E")} }</style><style nonce="" id="nuxt-ui-colors">@layer base {
-  :root {
-  --ui-color-primary-50: var(--color-violet-50, oklch(96.9% 0.016 293.756));
-  --ui-color-primary-100: var(--color-violet-100, oklch(94.3% 0.029 294.588));
-  --ui-color-primary-200: var(--color-violet-200, oklch(89.4% 0.057 293.283));
-  --ui-color-primary-300: var(--color-violet-300, oklch(81.1% 0.111 293.571));
-  --ui-color-primary-400: var(--color-violet-400, oklch(70.2% 0.183 293.541));
-  --ui-color-primary-500: var(--color-violet-500, oklch(60.6% 0.25 292.717));
-  --ui-color-primary-600: var(--color-violet-600, oklch(54.1% 0.281 293.009));
-  --ui-color-primary-700: var(--color-violet-700, oklch(49.1% 0.27 292.581));
-  --ui-color-primary-800: var(--color-violet-800, oklch(43.2% 0.232 292.759));
-  --ui-color-primary-900: var(--color-violet-900, oklch(38% 0.189 293.745));
-  --ui-color-primary-950: var(--color-violet-950, oklch(28.3% 0.141 291.089));
-  --ui-color-secondary-50: var(--color-indigo-50, oklch(96.2% 0.018 272.314));
-  --ui-color-secondary-100: var(--color-indigo-100, oklch(93% 0.034 272.788));
-  --ui-color-secondary-200: var(--color-indigo-200, oklch(87% 0.065 274.039));
-  --ui-color-secondary-300: var(--color-indigo-300, oklch(78.5% 0.115 274.713));
-  --ui-color-secondary-400: var(--color-indigo-400, oklch(67.3% 0.182 276.935));
-  --ui-color-secondary-500: var(--color-indigo-500, oklch(58.5% 0.233 277.117));
-  --ui-color-secondary-600: var(--color-indigo-600, oklch(51.1% 0.262 276.966));
-  --ui-color-secondary-700: var(--color-indigo-700, oklch(45.7% 0.24 277.023));
-  --ui-color-secondary-800: var(--color-indigo-800, oklch(39.8% 0.195 277.366));
-  --ui-color-secondary-900: var(--color-indigo-900, oklch(35.9% 0.144 278.697));
-  --ui-color-secondary-950: var(--color-indigo-950, oklch(25.7% 0.09 281.288));
-  --ui-color-success-50: var(--color-green-50, oklch(98.2% 0.018 155.826));
-  --ui-color-success-100: var(--color-green-100, oklch(96.2% 0.044 156.743));
-  --ui-color-success-200: var(--color-green-200, oklch(92.5% 0.084 155.995));
-  --ui-color-success-300: var(--color-green-300, oklch(87.1% 0.15 154.449));
-  --ui-color-success-400: var(--color-green-400, oklch(79.2% 0.209 151.711));
-  --ui-color-success-500: var(--color-green-500, oklch(72.3% 0.219 149.579));
-  --ui-color-success-600: var(--color-green-600, oklch(62.7% 0.194 149.214));
-  --ui-color-success-700: var(--color-green-700, oklch(52.7% 0.154 150.069));
-  --ui-color-success-800: var(--color-green-800, oklch(44.8% 0.119 151.328));
-  --ui-color-success-900: var(--color-green-900, oklch(39.3% 0.095 152.535));
-  --ui-color-success-950: var(--color-green-950, oklch(26.6% 0.065 152.934));
-  --ui-color-info-50: var(--color-blue-50, oklch(97% 0.014 254.604));
-  --ui-color-info-100: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+--[[
+    @author depso (depthso)
+    @description Grow a Garden auto-farm script
+    https://www.roblox.com/games/126884695634066
+]]
+
+--// Services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local InsertService = game:GetService("InsertService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local LocalPlayer = Players.LocalPlayer
+local Leaderstats = LocalPlayer.leaderstats
+local Backpack = LocalPlayer.Backpack
+local PlayerGui = LocalPlayer.PlayerGui
+
+local ShecklesCount = Leaderstats.Sheckles
+local GameInfo = MarketplaceService:GetProductInfo(game.PlaceId)
+
+--// ReGui
+local ReGui = loadstring(game:HttpGet('https://raw.githubusercontent.com/depthso/Dear-ReGui/refs/heads/main/ReGui.lua'))()
+local PrefabsId = "rbxassetid://" .. ReGui.PrefabsId
+
+--// Folders
+local GameEvents = ReplicatedStorage.GameEvents
+local Farms = workspace.Farm
+
+local Accent = {
+    DarkGreen = Color3.fromRGB(45, 95, 25),
+    Green = Color3.fromRGB(69, 142, 40),
+    Brown = Color3.fromRGB(26, 20, 8),
+}
+
+--// ReGui configuration (Ui library)
+ReGui:Init({
+	Prefabs = InsertService:LoadLocalAsset(PrefabsId)
+})
+ReGui:DefineTheme("GardenTheme", {
+	WindowBg = Accent.Brown,
+	TitleBarBg = Accent.DarkGreen,
+	TitleBarBgActive = Accent.Green,
+    ResizeGrab = Accent.DarkGreen,
+    FrameBg = Accent.DarkGreen,
+    FrameBgActive = Accent.Green,
+	CollapsingHeaderBg = Accent.Green,
+    ButtonsBg = Accent.Green,
+    CheckMark = Accent.Green,
+    SliderGrab = Accent.Green,
+})
+
+--// Dicts
+local SeedStock = {}
+local OwnedSeeds = {}
+local HarvestIgnores = {
+	Normal = false,
+	Gold = false,
+	Rainbow = false
+}
+
+--// Globals
+local SelectedSeed, AutoPlantRandom, AutoPlant, AutoHarvest, AutoBuy, SellThreshold, NoClip, AutoWalkAllowRandom
+
+local function CreateWindow()
+	local Window = ReGui:Window({
+		Title = `{GameInfo.Name} | Depso`,
+        Theme = "GardenTheme",
+		Size = UDim2.fromOffset(300, 200)
+	})
+	return Window
+end
+
+--// Interface functions
+local function Plant(Position: Vector3, Seed: string)
+	GameEvents.Plant_RE:FireServer(Position, Seed)
+	wait(.3)
+end
+
+local function GetFarms()
+	return Farms:GetChildren()
+end
+
+local function GetFarmOwner(Farm: Folder): string
+	local Important = Farm.Important
+	local Data = Important.Data
+	local Owner = Data.Owner
+
+	return Owner.Value
+end
+
+local function GetFarm(PlayerName: string): Folder?
+	local Farms = GetFarms()
+	for _, Farm in next, Farms do
+		local Owner = GetFarmOwner(Farm)
+		if Owner == PlayerName then
+			return Farm
+		end
+	end
+    return
+end
+
+local IsSelling = false
+local function SellInventory()
+	local Character = LocalPlayer.Character
+	local Previous = Character:GetPivot()
+	local PreviousSheckles = ShecklesCount.Value
+
+	--// Prevent conflict
+	if IsSelling then return end
+	IsSelling = true
+
+	Character:PivotTo(CFrame.new(62, 4, -26))
+	while wait() do
+		if ShecklesCount.Value ~= PreviousSheckles then break end
+		GameEvents.Sell_Inventory:FireServer()
+	end
+	Character:PivotTo(Previous)
+
+	wait(0.2)
+	IsSelling = false
+end
+
+local function BuySeed(Seed: string)
+	GameEvents.BuySeedStock:FireServer(Seed)
+end
+
+local function BuyAllSelectedSeeds()
+    local Seed = SelectedSeedStock.Selected
+    local Stock = SeedStock[Seed]
+
+	if not Stock or Stock <= 0 then return end
+
+    for i = 1, Stock do
+        BuySeed(Seed)
+    end
+end
+
+local function GetSeedInfo(Seed: Tool): number?
+	local PlantName = Seed:FindFirstChild("Plant_Name")
+	local Count = Seed:FindFirstChild("Numbers")
+	if not PlantName then return end
+
+	return PlantName.Value, Count.Value
+end
+
+local function CollectSeedsFromParent(Parent, Seeds: table)
+	for _, Tool in next, Parent:GetChildren() do
+		local Name, Count = GetSeedInfo(Tool)
+		if not Name then continue end
+
+		Seeds[Name] = {
+            Count = Count,
+            Tool = Tool
+        }
+	end
+end
+
+local function CollectCropsFromParent(Parent, Crops: table)
+	for _, Tool in next, Parent:GetChildren() do
+		local Name = Tool:FindFirstChild("Item_String")
+		if not Name then continue end
+
+		table.insert(Crops, Tool)
+	end
+end
+
+local function GetOwnedSeeds(): table
+	local Character = LocalPlayer.Character
+	
+	CollectSeedsFromParent(Backpack, OwnedSeeds)
+	CollectSeedsFromParent(Character, OwnedSeeds)
+
+	return OwnedSeeds
+end
+
+local function GetInvCrops(): table
+	local Character = LocalPlayer.Character
+	
+	local Crops = {}
+	CollectCropsFromParent(Backpack, Crops)
+	CollectCropsFromParent(Character, Crops)
+
+	return Crops
+end
+
+local function GetArea(Base: BasePart)
+	local Center = Base:GetPivot()
+	local Size = Base.Size
+
+	--// Bottom left
+	local X1 = math.ceil(Center.X - (Size.X/2))
+	local Z1 = math.ceil(Center.Z - (Size.Z/2))
+
+	--// Top right
+	local X2 = math.floor(Center.X + (Size.X/2))
+	local Z2 = math.floor(Center.Z + (Size.Z/2))
+
+	return X1, Z1, X2, Z2
+end
+
+local function EquipCheck(Tool)
+    local Character = LocalPlayer.Character
+    local Humanoid = Character.Humanoid
+
+    if Tool.Parent ~= Backpack then return end
+    Humanoid:EquipTool(Tool)
+end
+
+--// Auto farm functions
+local MyFarm = GetFarm(LocalPlayer.Name)
+local MyImportant = MyFarm.Important
+local PlantLocations = MyImportant.Plant_Locations
+local PlantsPhysical = MyImportant.Plants_Physical
+
+local Dirt = PlantLocations:FindFirstChildOfClass("Part")
+local X1, Z1, X2, Z2 = GetArea(Dirt)
+
+local function GetRandomFarmPoint(): Vector3
+    local FarmLands = PlantLocations:GetChildren()
+    local FarmLand = FarmLands[math.random(1, #FarmLands)]
+
+    local X1, Z1, X2, Z2 = GetArea(FarmLand)
+    local X = math.random(X1, X2)
+    local Z = math.random(Z1, Z2)
+
+    return Vector3.new(X, 4, Z)
+end
+
+local function AutoPlantLoop()
+	local Seed = SelectedSeed.Selected
+
+	local SeedData = OwnedSeeds[Seed]
+	if not SeedData then return end
+
+    local Count = SeedData.Count
+    local Tool = SeedData.Tool
+
+	--// Check for stock
+	if Count <= 0 then return end
+
+    local Planted = 0
+	local Step = 1
+
+	--// Check if the client needs to equip the tool
+    EquipCheck(Tool)
+
+	--// Plant at random points
+	if AutoPlantRandom.Value then
+		for i = 1, Count do
+			local Point = GetRandomFarmPoint()
+			Plant(Point, Seed)
+		end
+	end
+	
+	--// Plant on the farmland area
+	for X = X1, X2, Step do
+		for Z = Z1, Z2, Step do
+			if Planted > Count then break end
+			local Point = Vector3.new(X, 0.13, Z)
+
+			Planted += 1
+			Plant(Point, Seed)
+		end
+	end
+end
+
+local function HarvestPlant(Plant: Model)
+	local Prompt = Plant:FindFirstChild("ProximityPrompt", true)
+
+	--// Check if it can be harvested
+	if not Prompt then return end
+	fireproximityprompt(Prompt)
+end
+
+local function GetSeedStock(IgnoreNoStock: boolean?): table
+	local SeedShop = PlayerGui.Seed_Shop
+	local Items = SeedShop:FindFirstChild("Blueberry", true).Parent
+
+	local NewList = {}
+
+	for _, Item in next, Items:GetChildren() do
+		local MainFrame = Item:FindFirstChild("Main_Frame")
+		if not MainFrame then continue end
+
+		local StockText = MainFrame.Stock_Text.Text
+		local StockCount = tonumber(StockText:match("%d+"))
+
+		--// Seperate list
+		if IgnoreNoStock then
+			if StockCount <= 0 then continue end
+			NewList[Item.Name] = StockCount
+			continue
+		end
+
+		SeedStock[Item.Name] = StockCount
+	end
+
+	return IgnoreNoStock and NewList or SeedStock
+end
+
+local function CanHarvest(Plant): boolean?
+    local Prompt = Plant:FindFirstChild("ProximityPrompt", true)
+	if not Prompt then return end
+    if not Prompt.Enabled then return end
+
+    return true
+end
+
+local function CollectHarvestable(Parent, Plants, IgnoreDistance: boolean?)
+	local Character = LocalPlayer.Character
+	local PlayerPosition = Character:GetPivot().Position
+
+    for _, Plant in next, Parent:GetChildren() do
+        --// Fruits
+		local Fruits = Plant:FindFirstChild("Fruits")
+		if Fruits then
+			CollectHarvestable(Fruits, Plants, IgnoreDistance)
+		end
+
+		--// Distance check
+		local PlantPosition = Plant:GetPivot().Position
+		local Distance = (PlayerPosition-PlantPosition).Magnitude
+		if not IgnoreDistance and Distance > 15 then continue end
+
+		--// Ignore check
+		local Variant = Plant:FindFirstChild("Variant")
+		if HarvestIgnores[Variant.Value] then continue end
+
+        --// Collect
+        if CanHarvest(Plant) then
+            table.insert(Plants, Plant)
+        end
+	end
+    return Plants
+end
+
+local function GetHarvestablePlants(IgnoreDistance: boolean?)
+    local Plants = {}
+    CollectHarvestable(PlantsPhysical, Plants, IgnoreDistance)
+    return Plants
+end
+
+local function HarvestPlants(Parent: Model)
+	local Plants = GetHarvestablePlants()
+    for _, Plant in next, Plants do
+        HarvestPlant(Plant)
+    end
+end
+
+local function AutoSellCheck()
+    local CropCount = #GetInvCrops()
+
+    if not AutoSell.Value then return end
+    if CropCount < SellThreshold.Value then return end
+
+    SellInventory()
+end
+
+local function AutoWalkLoop()
+	if IsSelling then return end
+
+    local Character = LocalPlayer.Character
+    local Humanoid = Character.Humanoid
+
+    local Plants = GetHarvestablePlants(true)
+	local RandomAllowed = AutoWalkAllowRandom.Value
+	local DoRandom = #Plants == 0 or math.random(1, 3) == 2
+
+    --// Random point
+    if RandomAllowed and DoRandom then
+        local Position = GetRandomFarmPoint()
+        Humanoid:MoveTo(Position)
+		AutoWalkStatus.Text = "Random point"
+        return
+    end
+   
+    --// Move to each plant
+    for _, Plant in next, Plants do
+        local Position = Plant:GetPivot().Position
+        Humanoid:MoveTo(Position)
+		AutoWalkStatus.Text = Plant.Name
+    end
+end
+
+local function NoclipLoop()
+    local Character = LocalPlayer.Character
+    if not NoClip.Value then return end
+    if not Character then return end
+
+    for _, Part in Character:GetDescendants() do
+        if Part:IsA("BasePart") then
+            Part.CanCollide = false
+        end
+    end
+end
+
+local function MakeLoop(Toggle, Func)
+	coroutine.wrap(function()
+		while wait(.01) do
+			if not Toggle.Value then continue end
+			Func()
+		end
+	end)()
+end
+
+local function StartServices()
+	--// Auto-Walk
+	MakeLoop(AutoWalk, function()
+		local MaxWait = AutoWalkMaxWait.Value
+		AutoWalkLoop()
+		wait(math.random(1, MaxWait))
+	end)
+
+	--// Auto-Harvest
+	MakeLoop(AutoHarvest, function()
+		HarvestPlants(PlantsPhysical)
+	end)
+
+	--// Auto-Buy
+	MakeLoop(AutoBuy, BuyAllSelectedSeeds)
+
+	--// Auto-Plant
+	MakeLoop(AutoPlant, AutoPlantLoop)
+
+	--// Get stocks
+	while wait(.1) do
+		GetSeedStock()
+		GetOwnedSeeds()
+	end
+end
+
+local function CreateCheckboxes(Parent, Dict: table)
+	for Key, Value in next, Dict do
+		Parent:Checkbox({
+			Value = Value,
+			Label = Key,
+			Callback = function(_, Value)
+				Dict[Key] = Value
+			end
+		})
+	end
+end
+
+--// Window
+local Window = CreateWindow()
+
+--// Auto-Plant
+local PlantNode = Window:TreeNode({Title="Auto-Plant 🥕"})
+SelectedSeed = PlantNode:Combo({
+	Label = "Seed",
+	Selected = "",
+	GetItems = GetSeedStock,
+})
+AutoPlant = PlantNode:Checkbox({
+	Value = false,
+	Label = "Enabled"
+})
+AutoPlantRandom = PlantNode:Checkbox({
+	Value = false,
+	Label = "Plant at random points"
+})
+PlantNode:Button({
+	Text = "Plant all",
+	Callback = AutoPlantLoop,
+})
+
+--// Auto-Harvest
+local HarvestNode = Window:TreeNode({Title="Auto-Harvest 🚜"})
+AutoHarvest = HarvestNode:Checkbox({
+	Value = false,
+	Label = "Enabled"
+})
+HarvestNode:Separator({Text="Ignores:"})
+CreateCheckboxes(HarvestNode, HarvestIgnores)
+
+--// Auto-Buy
+local BuyNode = Window:TreeNode({Title="Auto-Buy 🥕"})
+local OnlyShowStock
+
+SelectedSeedStock = BuyNode:Combo({
+	Label = "Seed",
+	Selected = "",
+	GetItems = function()
+		local OnlyStock = OnlyShowStock and OnlyShowStock.Value
+		return GetSeedStock(OnlyStock)
+	end,
+})
+AutoBuy = BuyNode:Checkbox({
+	Value = false,
+	Label = "Enabled"
+})
+OnlyShowStock = BuyNode:Checkbox({
+	Value = false,
+	Label = "Only list stock"
+})
+BuyNode:Button({
+	Text = "Buy all",
+	Callback = BuyAllSelectedSeeds,
+})
+
+--// Auto-Sell
+local SellNode = Window:TreeNode({Title="Auto-Sell 💰"})
+SellNode:Button({
+	Text = "Sell inventory",
+	Callback = SellInventory, 
+})
+AutoSell = SellNode:Checkbox({
+	Value = false,
+	Label = "Enabled"
+})
+SellThreshold = SellNode:SliderInt({
+    Label = "Crops threshold",
+    Value = 15,
+    Minimum = 1,
+    Maximum = 199,
+})
+
+--// Auto-Walk
+local WallNode = Window:TreeNode({Title="Auto-Walk 🚶"})
+AutoWalkStatus = WallNode:Label({
+	Text = "None"
+})
+AutoWalk = WallNode:Checkbox({
+	Value = false,
+	Label = "Enabled"
+})
+AutoWalkAllowRandom = WallNode:Checkbox({
+	Value = true,
+	Label = "Allow random points"
+})
+NoClip = WallNode:Checkbox({
+	Value = false,
+	Label = "NoClip"
+})
+AutoWalkMaxWait = WallNode:SliderInt({
+    Label = "Max delay",
+    Value = 10,
+    Minimum = 1,
+    Maximum = 120,
+})
+
+--// Connections
+RunService.Stepped:Connect(NoclipLoop)
+Backpack.ChildAdded:Connect(AutoSellCheck)
+
+--// Services
+StartServices()
